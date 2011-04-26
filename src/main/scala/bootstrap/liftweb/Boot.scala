@@ -3,19 +3,19 @@
 package bootstrap.liftweb
 
 import net.liftweb._
-import http.{LiftRules, NotFoundAsTemplate, ParsePath}
+import http.{LiftRules, NotFoundAsTemplate, ParsePath, RedirectResponse}
 import sitemap.{SiteMap, Menu, Loc}
 import util.{ NamedPF }
 import _root_.net.liftweb.sitemap.Loc._
 import net.liftweb._
 import mapper.{Schemifier, DB, StandardDBVendor, DefaultConnectionIdentifier}
 import util.{Props}
-import common.{Full}
-import http.{S}
+import common.{Full,Loggable}
+import http.{S,Req}
 import leedm777.model._
 
 
-class Boot {
+class Boot extends Loggable {
   def boot {
   
     if (!DB.jndiJdbcConnAvailable_?) {
@@ -50,8 +50,18 @@ class Boot {
       case (req,failure) => NotFoundAsTemplate(
         ParsePath(List("exceptions","404"),"html",false,false))
     })
+
+    def isLoggedIn = User.loggedIn_?
     
-    LiftRules.setSiteMap(SiteMap(entries:_*))
+    // The case statement passed into SiteMap should cause every request when
+    // not logged in to redirect to the login screen.  In fact, it only
+    // redirects the first page you hit.  And it always redirects that page,
+    // even after login.
+    LiftRules.setSiteMap(new SiteMap(List({
+      case Full(Req(path, _, _)) if !isLoggedIn && path != List("user_mgt", "login") =>
+        logger.debug("Redirecting to login")
+        Loc.EarlyResponse(() => Full(RedirectResponse("/user_mgt/login")))
+    }), entries:_*))
     
     // set character encoding
     LiftRules.early.append(_.setCharacterEncoding("UTF-8"))
