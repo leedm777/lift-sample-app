@@ -1,5 +1,3 @@
-
-
 package leedm777.lib
 
 import net.liftweb.http._
@@ -15,6 +13,7 @@ import java.util.Date
  * stack basis.
  */
 object DependencyFactory extends Factory {
+
   implicit object time extends FactoryMaker(Helpers.now _)
 
   /**
@@ -26,6 +25,7 @@ object DependencyFactory extends Factory {
   private def init() {
     List(time)
   }
+
   init()
 }
 

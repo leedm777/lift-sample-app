@@ -1,5 +1,3 @@
-
-
 package leedm777 {
 
 import java.io.File
@@ -16,7 +14,7 @@ object AppTest {
     suite
   }
 
-  def main(args : Array[String]) {
+  def main(args: Array[String]) {
     _root_.junit.textui.TestRunner.run(suite)
   }
 }
@@ -30,6 +28,7 @@ class AppTest extends TestCase("app") {
    * Rigourous Tests :-)
    */
   def testOK() = assertTrue(true)
+
   // def testKO() = assertTrue(false);
 
   /**
@@ -77,4 +76,5 @@ class AppTest extends TestCase("app") {
     }
   }
 }
+
 }
