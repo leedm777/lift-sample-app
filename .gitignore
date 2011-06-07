@@ -3,4 +3,5 @@ lib_managed/
 src_managed/
 project/boot/
 *.h2.db
+*.db.lock.db
 out/
