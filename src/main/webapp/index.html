@@ -1,10 +1,13 @@
 <lift:surround with="default" at="content">
+    <head>
+        <style type="text/css">
+            .has-class {
+                display: none;
+            }
+        </style>
+    </head>
     <h2>Welcome to your project!</h2>
 
-    <p>
-        <lift:helloWorld.howdy>
-            <span>Welcome to app at <b:time/></span>
-        </lift:helloWorld.howdy>
-    </p>
+    <lift:FormParamScreen/>
 
 </lift:surround>
