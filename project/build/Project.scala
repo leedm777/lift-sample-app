@@ -1,15 +1,15 @@
 import sbt._
 
 class LiftProject(info: ProjectInfo) extends DefaultWebProject(info) {
-  val liftVersion = "2.3"
+  val liftVersion = "2.4-M2"
 
   /**
    * Application dependencies
    */
-  val webkit = "net.liftweb" %% "lift-webkit" % liftVersion % "compile->default"
+  val webkit = "net.liftweb" %% "lift-webkit" % liftVersion % "compile->default" withSources()
   val logback = "ch.qos.logback" % "logback-classic" % "0.9.26" % "compile->default"
-  val wizard = "net.liftweb" %% "lift-wizard" % liftVersion % "compile->default"
-  val mapper = "net.liftweb" %% "lift-mapper" % liftVersion % "compile->default"
+  val wizard = "net.liftweb" %% "lift-wizard" % liftVersion % "compile->default" withSources ()
+  val mapper = "net.liftweb" %% "lift-mapper" % liftVersion % "compile->default" withSources ()
   val h2 = "com.h2database" % "h2" % "1.2.138"
 
   val servlet = "javax.servlet" % "servlet-api" % "2.5" % "provided->default"

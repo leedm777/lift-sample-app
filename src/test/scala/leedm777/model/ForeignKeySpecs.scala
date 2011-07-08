@@ -34,7 +34,7 @@ object ForeignKeySpecs extends Specification {
       val theOne = TheOne.create.saveMe()
       val theMany = TheMany.create.theOne(theOne).saveMe()
       // Mapper limitation - collection must be fetched for cascade delete to work
-      theOne.theMany.size must_== 1
+      theOne.theMany.refresh
 
       // kinda silly, but just make sure the records are in the database
       TheOne.count must_== 1
@@ -42,7 +42,7 @@ object ForeignKeySpecs extends Specification {
 
       // deleting theOne should delete theMany
       // when FK's are used, this results in a Referential integrity constraint violation
-      theOne.delete_!
+      theOne.delete_! must_== true
 
       // now the tables should be emtpy
       TheOne.count must_== 0
