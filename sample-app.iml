@@ -186,7 +186,9 @@
           <root url="jar://$MODULE_DIR$/lib_managed/scala_2.8.1/compile/lift-mapper_2.8.1-2.3.jar!/" />
         </CLASSES>
         <JAVADOC />
-        <SOURCES />
+        <SOURCES>
+          <root url="jar://$MODULE_DIR$/lib_managed/scala_2.8.1/compile/lift-mapper_2.8.1-2.3-sources.jar!/" />
+        </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
@@ -213,7 +215,9 @@
           <root url="jar://$MODULE_DIR$/lib_managed/scala_2.8.1/compile/lift-webkit_2.8.1-2.3.jar!/" />
         </CLASSES>
         <JAVADOC />
-        <SOURCES />
+        <SOURCES>
+          <root url="jar://$MODULE_DIR$/lib_managed/scala_2.8.1/compile/lift-webkit_2.8.1-2.3-sources.jar!/" />
+        </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
@@ -222,7 +226,9 @@
           <root url="jar://$MODULE_DIR$/lib_managed/scala_2.8.1/compile/lift-wizard_2.8.1-2.3.jar!/" />
         </CLASSES>
         <JAVADOC />
-        <SOURCES />
+        <SOURCES>
+          <root url="jar://$MODULE_DIR$/lib_managed/scala_2.8.1/compile/lift-wizard_2.8.1-2.3-sources.jar!/" />
+        </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library" exported="">
