@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="net.liftweb_lift-util_2.8.1_2.3">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/net.liftweb/lift-util_2.8.1/jars/lift-util_2.8.1-2.3.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/net.liftweb/lift-util_2.8.1/srcs/lift-util_2.8.1-2.3-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
