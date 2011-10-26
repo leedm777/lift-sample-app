@@ -38,10 +38,8 @@ class Boot {
 
     // build sitemap
     val entries = List(Menu("Home") / "index") :::
-      List(Menu(Loc("Static", Link(List("static"), true, "/static/index"),
-        "Static Content"))) :::
       // the User management menu items
-      User.sitemap :::
+      //User.sitemap :::
       Nil
 
     LiftRules.uriNotFound.prepend(NamedPF("404handler") {

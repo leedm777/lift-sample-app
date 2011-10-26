@@ -1,10 +1,12 @@
 <lift:surround with="default" at="content">
-    <h2>Welcome to your project!</h2>
+    <div>
+        Select options from the multi-select below. When you submit, your
+        selection is displayed in the notices field.
+    </div>
 
-    <p>
-        <lift:helloWorld.howdy>
-            <span>Welcome to app at <b:time/></span>
-        </lift:helloWorld.howdy>
-    </p>
-
+    <div>
+        If you clear the selection (Ctrl-click or ⌘-click) and submit, the
+        contents remain unchanged.
+    </div>
+    <div class="lift:ShowMultiselect"></div>
 </lift:surround>
