@@ -1,21 +1,19 @@
 package bootstrap.liftweb
 
 import net.liftweb._
-import http.{LiftRules, NotFoundAsTemplate, ParsePath}
+import common.{Loggable, Full}
+import http._
 import sitemap.{SiteMap, Menu, Loc}
 import util.{NamedPF}
 import _root_.net.liftweb.sitemap.Loc._
 import net.liftweb._
 import mapper.{Schemifier, DB, StandardDBVendor, DefaultConnectionIdentifier}
 import util.{Props}
-import common.{Full}
-import http.{S}
 import leedm777.model._
 
 
-class Boot {
+class Boot extends Loggable {
   def boot {
-
     if (!DB.jndiJdbcConnAvailable_?) {
       val vendor =
         new StandardDBVendor(Props.get("db.driver") openOr "org.h2.Driver",
@@ -28,19 +26,18 @@ class Boot {
       DB.defineConnectionManager(DefaultConnectionIdentifier, vendor)
     }
 
+    // Make a transaction span the whole HTTP request
+    S.addAround(DB.buildLoanWrapper)
+
     // Use Lift's Mapper ORM to populate the database
-    // you don't need to use Mapper to use Lift... use
-    // any ORM you want
     Schemifier.schemify(true, Schemifier.infoF _, User)
 
     // where to search snippet
     LiftRules.addToPackages("leedm777")
 
     // build sitemap
-    val entries = List(Menu("Home") / "index") :::
-      List(Menu(Loc("Static", Link(List("static"), true, "/static/index"),
-        "Static Content"))) :::
-      // the User management menu items
+    val entries = List(
+      Menu("Home") / "index") :::
       User.sitemap :::
       Nil
 
@@ -64,8 +61,9 @@ class Boot {
     // What is the function to test if a user is logged in?
     LiftRules.loggedInTest = Full(() => User.loggedIn_?)
 
-    // Make a transaction span the whole HTTP request
-    S.addAround(DB.buildLoanWrapper)
+    // Setup HTML5 parser
+    LiftRules.htmlProperties.default.set((r: Req) => new Html5Properties(r.userAgent))
 
+    logger.info("Application ready")
   }
 }

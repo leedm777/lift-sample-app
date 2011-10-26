@@ -1,10 +1,15 @@
-<lift:surround with="default" at="content">
-    <h2>Welcome to your project!</h2>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>index</title>
+</head>
+<body class="lift:content_id=main">
 
-    <p>
-        <lift:helloWorld.howdy>
-            <span>Welcome to app at <b:time/></span>
-        </lift:helloWorld.howdy>
+<div id="main" class="lift:surround?with=default;at=content">
+    <p class="lift:HelloWorld.howdy">
+        <span>Welcome to app at <span id="now">now</span></span>
     </p>
+</div>
 
-</lift:surround>
+</body>
+</html>
